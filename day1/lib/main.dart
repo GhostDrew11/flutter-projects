@@ -1,6 +1,31 @@
 import 'package:flutter/material.dart';
 
+// Adding Dart Code at top level -- just to learn
+String name = "Kenny";
+int count = 24;
+bool isReady = true;
+
+// But can aslo infer types
+var title = 'Learning Flutter'; // inferred as a String
+final userId = 123; // immutable, like const in TS
+const apiURL = 'https://api.example.com'; // compile-time constant
+
+// Null safety (similar to TS strict mode)
+String? optionalName; // can be null
+String requiredName = 'Must have a value'; // must be initialized
+
+// Functions
+String greetUser(String name, {int? age}) {
+  return age != null ? 'Hello $name, age $age' : 'Hello $name';
+}
+
+// Arrow functions
+String shortGreet(String name) => 'Hello $name';
+
 void main() {
+  print(greetUser('Kenny', age: 24));
+  print(shortGreet('Kenny'));
+
   runApp(const MyApp());
 }
 
