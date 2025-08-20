@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 
 // Adding Dart Code at top level -- just to learn
@@ -24,18 +26,20 @@ String shortGreet(String name) => 'Hello $name';
 
 // List (like arrays)
 List<String> names = ['God The Father', 'God The Son', 'God The Holy Spirit'];
-var numbers = <int>[1,3,7,8,9,13,22,23,24];
+var numbers = <int>[1, 3, 7, 8, 9, 13, 22, 23, 24];
 
 // Maps (like objects)
-Map<String, dynamic> user = {
-  'name': 'Kenny',
-  'age': 24,
-  'isActive': true,
-};
+Map<String, dynamic> user = {'name': 'Kenny', 'age': 24, 'isActive': true};
 
 // Spread operator (similar to spread operator in TS)
-var moredHolyNames = [...names, 'The Holy Trinity', 'The Blessed Virgin Mary','The Most Chaste Saint Joseph', 'The Most Zealed Saint John The Baptist', 'The Most Kind Saint Jude'];
-
+var moredHolyNames = [
+  ...names,
+  'The Holy Trinity',
+  'The Blessed Virgin Mary',
+  'The Most Chaste Saint Joseph',
+  'The Most Zealed Saint John The Baptist',
+  'The Most Kind Saint Jude',
+];
 
 void main() {
   print(greetUser('Kenny', age: 24));
@@ -55,11 +59,7 @@ class MyFirstWidget extends StatelessWidget {
   final int count;
 
   // const MyFirstWidget({super.key, required this.title, required this.count});
-  const MyFirstWidget({
-    Key? key,
-    required this.title,
-    required this.count,
-  }) :super(key: key);
+  const MyFirstWidget({super.key, required this.title, required this.count});
 
   @override
   Widget build(BuildContext context) {
@@ -67,22 +67,23 @@ class MyFirstWidget extends StatelessWidget {
       children: [
         Text(title, style: TextStyle(fontSize: 24)),
         Text('Count: $count'),
-      ]
+      ],
     );
   }
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: WelcomeScreen(),
-    );
+    return MaterialApp(title: 'Flutter Demo', home: WelcomeScreen());
   }
 }
 
 class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,14 +96,13 @@ class WelcomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () => print('Button Pressed'),
               child: Text('Press Me'),
-            )
-          ]
-        )
-      )
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
-
 
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
