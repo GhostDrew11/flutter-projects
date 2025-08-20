@@ -4,119 +4,135 @@ void main() {
   runApp(const MyApp());
 }
 
+// Flutter Layout
+// Column( // or Row for horizontal
+//   mainAxisAlignment: MainAxisAlignment.center, // justify-content
+//   crossAxisAlignment: CrossAxisAlignment.center, // align-items
+//   children: [
+//     Text('Centered content'),
+//   ],
+// )
+
+// // Flexible equivalent to flex in React
+// Expanded(
+//   flex: 1,
+//   child: Container(/* content */),
+// )
+
+// Common Layout Widgets
+// Container (like View with styling)
+// Container(
+//   width: 200,
+//   height: 100,
+//   padding: EdgeInsets.all(16),
+//   margin: EdgeInsets.symmetric(vertical: 16),
+//   decoration: BoxDecoration(
+//     color: Colors.blue,
+//     borderRadius: BorderRadius.circular(8),
+//     boxShadow: [BoxShadow(blurRadius: 4)],
+//   ),
+//   child: Text('Styled Container'),
+// )
+
+//Stack (like position: absolute)
+// Stack(
+//   children: [
+//     Container(width: 100, height:100, color: Colors.red),
+//     Positioned(
+//       top: 10,
+//       left: 10,
+//       child: Text('Overlay'),
+//     ),
+//   ],
+// )
+
+// Wrap (like flexWrap)
+// Wrap(
+//   spacing: 8,
+//   runSpacing: 8,
+//   children: [
+//     Chip(label: Text('Tag 1')),
+//     Chip(label: Text('Tag 2')),
+//     Chip(label: Text('Tag 3')),
+//   ],
+// )
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      title: 'Profile Card',
+      home: Scaffold(
+        appBar: AppBar(title: Text('Profile Card')),
+        body: Center(child: ProfileCard()),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class ProfileCard extends StatelessWidget {
+  const ProfileCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return Container(
+      width: 300,
+      height: 300,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        // boxShadow: [
+        //   BoxShadow(blurRadius: 10, color: Colors.grey.withOpacity(0.2)),
+        // ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      child: Card(
+        // margin: EdgeInsets.all(16),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: NetworkImage(
+                  'https://via.placeholder.com/150',
+                ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'John Doe',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 4),
+              Text(
+                'Frontend Developer',
+                style: TextStyle(color: Colors.grey[600]),
+              ),
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildStatItem('Posts', '123'),
+                  // SizedBox(width: 8),
+                  _buildStatItem('Followers', '456'),
+                  // SizedBox(width: 8),
+                  _buildStatItem('Posts', '789'),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+Widget _buildStatItem(String label, String count) {
+  return Column(
+    children: [
+      Text(count, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      Text(label, style: TextStyle(color: Colors.grey[600])),
+    ],
+  );
 }

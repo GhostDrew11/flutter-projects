@@ -53,7 +53,7 @@ class TodoExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Todo Example', home: _TodoApp());
+    return MaterialApp(home: _TodoApp());
   }
 }
 
@@ -79,7 +79,7 @@ class _TodoAppState extends State<_TodoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Todo App')),
+      appBar: AppBar(title: const Text('Todo App')),
       body: Column(
         children: [
           Padding(
